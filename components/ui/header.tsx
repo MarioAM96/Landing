@@ -25,7 +25,7 @@ export default function Header() {
               <li>
                 <Link
                   href="/"
-                  className="btn-sm bg-gray-800 text-gray-200 shadow hover:bg-gray-900"
+                  className="btn-sm bg-red-600 text-gray-200 shadow hover:bg-gray-900"
                 >
                   Whatsapp
                 </Link>
