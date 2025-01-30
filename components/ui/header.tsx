@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Logo from "./logo";
-import { FaWhatsapp } from "react-icons/fa";
+import { FaWhatsapp, FaAngleDoubleRight } from "react-icons/fa";
 
 export default function Header() {
   return (
@@ -15,18 +15,13 @@ export default function Header() {
           {/* Centered sign-in links */}
           <div className="flex items-center justify-center flex-grow">
             <ul className="flex items-center gap-3">
-              <li>
-                <Link
-                  href="tel:+5930962840400"
-                  className="btn-sm bg-white text-gray-800 shadow hover:bg-gray-50"
-                >
-                  Llámanos
-                </Link>
+              <li className="font-bold text-black text-sm md:text-base whitespace-nowrap flex items-center gap-1">
+                Más Información <FaAngleDoubleRight size={14} />
               </li>
               <li>
                 <Link
                   href="https://wa.me/593962989426?text=Hola%20quisiera%20m%C3%A1s%20informaci%C3%B3n"
-                  className="btn-sm bg-red-600 text-gray-200 shadow hover:bg-gray-900 flex items-center gap-2"
+                  className="btn-sm bg-[#FE280A] text-white shadow hover:bg-[#FE280A]/90 flex items-center gap-2 whitespace-nowrap"
                 >
                   <FaWhatsapp size={18} />
                   WhatsApp Ventas

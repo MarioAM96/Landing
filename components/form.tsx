@@ -18,27 +18,6 @@ export default function HeroHome() {
 
   const [confirmationMessage, setConfirmationMessage] = useState("");
 
-  const images = [
-    "https://fibramax.ec/wp-content/uploads/2024/09/2.jpg",
-    "https://fibramax.ec/wp-content/uploads/2024/09/3.jpg",
-    "https://fibramax.ec/wp-content/uploads/2024/09/4.jpg",
-  ];
-
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [fade, setFade] = useState(true);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setFade(false);
-      setTimeout(() => {
-        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-        setFade(true);
-      }, 500); // Duration of fade-out
-    }, 4000); // Total duration including fade-in and fade-out
-
-    return () => clearInterval(interval);
-  }, [images.length]);
-
   useEffect(() => {
     const script = document.createElement("script");
     script.type = "text/javascript";
@@ -121,7 +100,7 @@ export default function HeroHome() {
     <section className="relative">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="pb-6 pt-32 md:pb-5 md:pt-20">
-          <div className="flex justify-center w-full mb-8"> {/* Added mb-8 for spacing */}
+          <div className="flex justify-center w-full mb-8 mt-6">
             <Image
               src={Fibramax}
               alt="Internet Hogar"
@@ -285,14 +264,14 @@ export default function HeroHome() {
             </div>
           </div>
           <div className="flex justify-center w-full">
-          <Image
-            src={Latencia}
-            alt="Internet Hogar"
-            width={800}
-            height={550}
-            className="rounded-2xl"
-          />
-        </div>
+            <Image
+              src={Latencia}
+              alt="Internet Hogar"
+              width={800}
+              height={550}
+              className="rounded-2xl"
+            />
+          </div>
         </div>
       </div>
     </section>
