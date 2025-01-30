@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "./logo";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function Header() {
   return (
@@ -16,7 +17,7 @@ export default function Header() {
             <ul className="flex items-center gap-3">
               <li>
                 <Link
-                  href="/"
+                  href="tel:+5930962840400"
                   className="btn-sm bg-white text-gray-800 shadow hover:bg-gray-50"
                 >
                   Llámanos
@@ -24,17 +25,18 @@ export default function Header() {
               </li>
               <li>
                 <Link
-                  href="/"
-                  className="btn-sm bg-red-600 text-gray-200 shadow hover:bg-gray-900"
+                  href="https://wa.me/593962989426?text=Hola%20quisiera%20m%C3%A1s%20informaci%C3%B3n"
+                  className="btn-sm bg-red-600 text-gray-200 shadow hover:bg-gray-900 flex items-center gap-2"
                 >
-                  Whatsapp
+                  <FaWhatsapp size={18} />
+                  WhatsApp Ventas
                 </Link>
               </li>
             </ul>
           </div>
 
           {/* Empty space to balance the layout */}
-          <div className="flex flex-none" style={{ width: '100px' }} />
+          <div className="flex flex-none" style={{ width: "100px" }} />
         </div>
       </div>
     </header>

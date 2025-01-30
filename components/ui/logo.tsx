@@ -6,7 +6,7 @@ export default function Logo() {
       <img
         src="https://fibramax.ec/repositorio_legal/media/img/LOGORGB1.png"
         alt="Logo Fibramax"
-        className="h-7 w-auto" // Ajusta el tamaño según sea necesario
+        className="h-7 w-auto"
       />
     </Link>
   );
