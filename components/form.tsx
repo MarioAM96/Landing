@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Swal from "sweetalert2";
 import InternetHogar from "@/public/images/fibramax_internet_hogar.png";
 import Latencia from "@/public/images/latencia.png";
 import Fibramax from "@/public/images/fibramax.png";
@@ -16,7 +17,7 @@ export default function HeroHome() {
     policy: false,
   });
 
-  const [confirmationMessage, setConfirmationMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -47,9 +48,7 @@ export default function HeroHome() {
     };
   }, []);
 
-  const handleChange = (e: {
-    target: { name: any; value: any; type: any; checked: any };
-  }) => {
+  const handleChange = (e: { target: { name: any; value: any; type: any; checked: any; }; }) => {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
@@ -57,8 +56,9 @@ export default function HeroHome() {
     });
   };
 
-  const handleSubmit = async (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     const apiUrl = "http://127.0.0.1:8000/api/formulariolanding";
 
@@ -87,12 +87,20 @@ export default function HeroHome() {
         policy: false,
       });
 
-      setConfirmationMessage(
-        "Gracias, un asesor se comunicará contigo lo más pronto posible."
-      );
+      Swal.fire({
+        icon: "success",
+        title: "Formulario enviado",
+        text: "Gracias, un asesor se comunicará contigo lo más pronto posible.",
+      });
     } catch (error) {
       console.error("Error al enviar el formulario:", error);
-      setConfirmationMessage("Hubo un error al enviar el formulario.");
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Hubo un error al enviar el formulario.",
+      });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -110,7 +118,7 @@ export default function HeroHome() {
             />
           </div>
           <div className="flex flex-col md:flex-row md:space-x-8">
-            <div className="flex-1" data-aos="zoom-y-out" data-aos-delay={600}>
+            <div className="flex-1 mt-3" data-aos="zoom-y-out" data-aos-delay={600}>
               <div className="relative">
                 <Image
                   src={InternetHogar}
@@ -124,11 +132,12 @@ export default function HeroHome() {
             <div className="flex-1">
               <div className="pb-12 text-center md:pb-16">
                 <h1
-                  className="mb-6 border-y text-5xl font-bold [border-image:linear-gradient(to_right,transparent,theme(colors.red.300/.8),transparent)1] md:text-6xl"
+                  className="mb-6 border-y text-center text-[1.57rem] font-bold [border-image:linear-gradient(to_right,transparent,theme(colors.red.300/.8),transparent)1] md:text-[2.63rem]"
                   data-aos="zoom-y-out"
                   data-aos-delay={150}
+                  style={{ color: "#FE280A" }}
                 >
-                  ¡DÉJANOS TUS DATOS! <br className="max-lg:hidden" />
+                  ¡DÉJANOS TUS DATOS!
                 </h1>
                 <div className="mx-auto max-w-3xl">
                   <form
@@ -242,23 +251,43 @@ export default function HeroHome() {
                       <button
                         type="submit"
                         className="btn group w-1/2 rounded-md bg-gradient-to-r from-red-600 to-red-500 px-6 py-3 text-base font-medium text-white shadow-lg transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                        disabled={isSubmitting}
                       >
-                        <span className="relative inline-flex items-center justify-center w-full">
-                          Enviar{" "}
-                          <span className="ml-2 text-xl transition-transform group-hover:translate-x-1">
-                            &#8594;
+                        {isSubmitting ? (
+                          <span className="relative inline-flex items-center justify-center w-full">
+                            <svg
+                              className="animate-spin h-5 w-5 mr-3 text-white"
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                            >
+                              <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                              ></circle>
+                              <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8v8H4z"
+                              ></path>
+                            </svg>
+                            Enviando...
                           </span>
-                        </span>
+                        ) : (
+                          <span className="relative inline-flex items-center justify-center w-full">
+                            Enviar{" "}
+                            <span className="ml-2 text-xl transition-transform group-hover:translate-x-1">
+                              &#8594;
+                            </span>
+                          </span>
+                        )}
                       </button>
                     </div>
                   </form>
-                  <div
-                    className="mt-8 mb-8 text-lg text-gray-700"
-                    data-aos="zoom-y-out"
-                    data-aos-delay={300}
-                  >
-                    {confirmationMessage && <p>{confirmationMessage}</p>}
-                  </div>
                 </div>
               </div>
             </div>

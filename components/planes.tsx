@@ -1,7 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Image from "next/image";
-import Logo from "./ui/logo";
 import FamilyPlay from "@/public/images/family_play.png";
 import FamilyPlus from "@/public/images/family_plus.png";
 import FamilyTurbo from "@/public/images/family_turbo.png";
@@ -9,7 +8,7 @@ import FamilyTurbo from "@/public/images/family_turbo.png";
 export default function BusinessCategories() {
   const [currentImage, setCurrentImage] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  
+
   const images = [
     { src: FamilyPlay, alt: "Family Play" },
     { src: FamilyPlus, alt: "Family Plus" },
@@ -41,11 +40,15 @@ export default function BusinessCategories() {
   return (
     <section className="w-full">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-      <h1 className="text-4xl font-bold text-center mb-6" style={{ color: '#FE280A' }}>
-          Planes de máxima velocidad
-        </h1>
-
         <div className="pb-8 md:pb-12">
+          <h1
+            className="mt-8 mb-6 border-y text-center text-[1.57rem] font-bold [border-image:linear-gradient(to_right,transparent,theme(colors.red.300/.8),transparent)1] md:text-[2.63rem]"
+            data-aos="zoom-y-out"
+            data-aos-delay={150}
+            style={{ color: '#FE280A' }}
+          >
+            Planes de máxima velocidad
+          </h1>
           <div className="relative flex min-h-[450px] items-center justify-center">
             {/* Líneas decorativas */}
             <div className="absolute inset-0 -z-10">
