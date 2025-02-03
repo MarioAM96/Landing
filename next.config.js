@@ -1,11 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    //Descomentar y npm run build para produccion
-    //output: 'export',
-    //basePath: '/landing', //Path Base para produccion
-    images: {
-        domains: ['fibramax.ec'],
-      },
+  //Descomentar para produccion
+  output: 'export',
+
+  //Descomentar para produccion con un basepath que no esta en la raiz
+  //basePath: '/landing',
+  
+  images: {
+      unoptimized: true, 
+  },
+
+  //Descomentar para produccion con un basepath que no esta en la raiz
+  //assetPrefix: '/landing',
 };
 
 module.exports = nextConfig;

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Swal from "sweetalert2";
 import InternetHogar from "@/public/images/fibramax_internet_hogar.png";
@@ -11,11 +11,10 @@ export default function HeroHome() {
   const [formData, setFormData] = useState({
     nombre: "",
     telefono: "",
-    cedula: "",
-    ciudad: "",
-    terms: false,
-    policy: false,
+    policy: true,
   });
+
+  const modalRef = useRef<HTMLDialogElement>(null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -48,7 +47,9 @@ export default function HeroHome() {
     };
   }, []);
 
-  const handleChange = (e: { target: { name: any; value: any; type: any; checked: any; }; }) => {
+  const handleChange = (e: {
+    target: { name: any; value: any; type: any; checked: any };
+  }) => {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
@@ -56,11 +57,11 @@ export default function HeroHome() {
     });
   };
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const apiUrl = "http://127.0.0.1:8000/api/formulariolanding";
+    const apiUrl = "https://api.tvmax.ec/api/formulariolanding";
 
     try {
       const response = await fetch(apiUrl, {
@@ -81,10 +82,7 @@ export default function HeroHome() {
       setFormData({
         nombre: "",
         telefono: "",
-        cedula: "",
-        ciudad: "",
-        terms: false,
-        policy: false,
+        policy: true,
       });
 
       Swal.fire({
@@ -118,7 +116,11 @@ export default function HeroHome() {
             />
           </div>
           <div className="flex flex-col md:flex-row md:space-x-8">
-            <div className="flex-1 mt-3" data-aos="zoom-y-out" data-aos-delay={600}>
+            <div
+              className="flex-1 mt-3"
+              data-aos="zoom-y-out"
+              data-aos-delay={600}
+            >
               <div className="relative">
                 <Image
                   src={InternetHogar}
@@ -132,16 +134,20 @@ export default function HeroHome() {
             <div className="flex-1">
               <div className="pb-12 text-center md:pb-16">
                 <h1
-                  className="mb-6 border-y text-center text-[1.57rem] font-bold [border-image:linear-gradient(to_right,transparent,theme(colors.red.300/.8),transparent)1] md:text-[2.63rem]"
+                  className="mb-2 border-y text-center text-[1.57rem] font-bold [border-image:linear-gradient(to_right,transparent,theme(colors.red.300/.8),transparent)1] md:text-[2.63rem]"
                   data-aos="zoom-y-out"
                   data-aos-delay={150}
                   style={{ color: "#FE280A" }}
                 >
                   ¡DÉJANOS TUS DATOS!
                 </h1>
+                <p className="text-center text-[0.785rem] md:text-[1.315rem] text-gray-600">
+                  Un asesor se comunicará contigo.
+                </p>
+
                 <div className="mx-auto max-w-3xl">
                   <form
-                    className="mt-8 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
+                    className="mt-8 grid grid-cols-1 gap-y-6"
                     onSubmit={handleSubmit}
                   >
                     <div data-aos="zoom-y-out" data-aos-delay={300}>
@@ -160,7 +166,7 @@ export default function HeroHome() {
                     </div>
                     <div data-aos="zoom-y-out" data-aos-delay={300}>
                       <label className="block text-left text-sm font-semibold text-gray-700">
-                        Teléfono
+                        Teléfono*
                       </label>
                       <input
                         type="tel"
@@ -169,59 +175,14 @@ export default function HeroHome() {
                         onChange={handleChange}
                         className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-900 placeholder-gray-400 shadow-sm focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500"
                         placeholder="Ingrese su teléfono"
-                      />
-                    </div>
-                    <div data-aos="zoom-y-out" data-aos-delay={300}>
-                      <label className="block text-left text-sm font-semibold text-gray-700">
-                        Cédula
-                      </label>
-                      <input
-                        type="text"
-                        name="cedula"
-                        value={formData.cedula}
-                        onChange={handleChange}
-                        className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-900 placeholder-gray-400 shadow-sm focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500"
-                        placeholder="Ingrese su cédula"
-                      />
-                    </div>
-                    <div data-aos="zoom-y-out" data-aos-delay={300}>
-                      <label className="block text-left text-sm font-semibold text-gray-700">
-                        Ciudad
-                      </label>
-                      <input
-                        type="text"
-                        name="ciudad"
-                        value={formData.ciudad}
-                        onChange={handleChange}
-                        className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-900 placeholder-gray-400 shadow-sm focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500"
-                        placeholder="Ingrese su ciudad"
+                        required
                       />
                     </div>
                     <div
-                      className="col-span-1 sm:col-span-2"
+                      className="col-span-1"
                       data-aos="zoom-y-out"
                       data-aos-delay={300}
                     >
-                      <div className="flex items-center">
-                        <input
-                          type="checkbox"
-                          id="terms"
-                          name="terms"
-                          checked={formData.terms}
-                          onChange={handleChange}
-                          className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"
-                          required
-                        />
-                        <label
-                          htmlFor="terms"
-                          className="ml-2 text-sm text-gray-700"
-                        >
-                          Acepto los{" "}
-                          <a href="#" className="text-red-600 hover:underline">
-                            Términos y Condiciones
-                          </a>
-                        </label>
-                      </div>
                       <div className="flex items-center mt-2">
                         <input
                           type="checkbox"
@@ -237,20 +198,46 @@ export default function HeroHome() {
                           className="ml-2 text-sm text-gray-700"
                         >
                           Acepto las{" "}
-                          <a href="#" className="text-red-600 hover:underline">
+                          <button
+                            type="button"
+                            onClick={() => modalRef.current?.showModal()}
+                            className="text-red-600 hover:underline"
+                          >
                             Políticas del Servicio
-                          </a>
+                          </button>
                         </label>
+
+                        {/* Modal */}
+                        <dialog
+                          ref={modalRef}
+                          className="p-4 rounded-lg shadow-lg w-[95vw] max-w-4xl h-[85vh] sm:w-[90vw] sm:h-[80vh] lg:w-[60vw] lg:h-[70vh] overflow-hidden backdrop:bg-black/50"
+                        >
+                          <div className="flex justify-between items-center mb-4">
+                            <h2 className="text-lg font-semibold">
+                              Políticas del Servicio
+                            </h2>
+                            <button
+                              onClick={() => modalRef.current?.close()}
+                              className="text-red-600 text-2xl font-bold"
+                            >
+                              ×
+                            </button>
+                          </div>
+                          <iframe
+                            src="https://fibramax.ec/wp-content/uploads/2024/07/Aviso-Privacidad-Fibramax.pdf"
+                            className="w-full h-full border rounded-lg"
+                          />
+                        </dialog>
                       </div>
                     </div>
                     <div
-                      className="col-span-1 sm:col-span-2"
+                      className="col-span-1"
                       data-aos="zoom-y-out"
                       data-aos-delay={300}
                     >
                       <button
                         type="submit"
-                        className="btn group w-1/2 rounded-md bg-gradient-to-r from-red-600 to-red-500 px-6 py-3 text-base font-medium text-white shadow-lg transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                        className="btn group w-full rounded-md bg-gradient-to-r from-red-600 to-red-500 px-6 py-3 text-base font-medium text-white shadow-lg transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
                         disabled={isSubmitting}
                       >
                         {isSubmitting ? (
