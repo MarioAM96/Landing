@@ -9,13 +9,6 @@ export default function Footer({ border = false }: { border?: boolean }) {
         <div
           className={`grid gap-10 py-8 sm:grid-cols-12 md:py-12 ${border ? "border-t [border-image:linear-gradient(to_right,transparent,theme(colors.slate.200),transparent)1]" : ""}`}
         >
-          {/* 1st block */}
-          <div className="space-y-2 sm:col-span-12 lg:col-span-4">
-            <div>
-              <Logo />
-            </div>
-            <div className="text-sm text-gray-600">&copy; Fibramax</div>
-          </div>
 
           {/* 2nd block */}
           <div className="space-y-2 sm:col-span-6 md:col-span-3 lg:col-span-2">

@@ -4,69 +4,28 @@ import Stripes from "@/public/images/stripes-dark.svg";
 export default function Cta() {
   return (
     <section>
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+      <div className="w-full px-0">
         <div
-          className="relative overflow-hidden rounded-2xl text-center shadow-xl before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:rounded-2xl before:bg-gradient-to-r from-red-800 to-red-900"
+          className="relative overflow-hidden text-center shadow-xl before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:bg-[#1d1d1b]"
           data-aos="zoom-y-out"
         >
-          {/* Glow */}
-          <div
-            className="absolute bottom-0 left-1/2 -z-10 -translate-x-1/2 translate-y-1/2"
-            aria-hidden="true"
-          >
-            <div className="h-56 w-[480px] rounded-full border-[20px] border-red-600 blur-3xl opacity-70" />
-          </div>
-          {/* Stripes illustration */}
-          <div
-            className="pointer-events-none absolute left-1/2 top-0 -z-10 -translate-x-1/2 transform"
-            aria-hidden="true"
-          >
-            <Image
-              className="max-w-none opacity-50"
-              src={Stripes}
-              width={768}
-              height={432}
-              alt="Stripes"
-            />
-          </div>
           <div className="px-4 py-12 md:px-12 md:py-20">
-            <h2 className="mb-6 border-y text-3xl font-bold text-red-200 [border-image:linear-gradient(to_right,transparent,theme(colors.red.700/.7),transparent)1] md:mb-12 md:text-4xl">
-            ¿Necesitas más informacion?
+            <h2 className="mb-6 border-y text-3xl font-bold text-white [border-image:linear-gradient(to_right,transparent,theme(colors.red.700/.7),transparent)1] md:mb-12 md:text-4xl">
+              ¿Necesitas más información?
             </h2>
             <div className="mx-auto max-w-xs sm:flex sm:max-w-none sm:justify-center">
               <a
-                className="btn group mb-4 w-full bg-gradient-to-t from-red-700 to-red-500 bg-[length:100%_100%] bg-[bottom] text-white shadow-lg hover:bg-[length:100%_150%] sm:mb-0 sm:w-auto"
+                className="btn group mb-4 w-full bg-[#FE280A] text-white shadow-lg hover:brightness-110 sm:mb-0 sm:w-auto"
                 href="https://fibramax.ec/"
               >
                 <span className="relative inline-flex items-center">
-                Visita Nuestro Sitio Web{" "}
-                  <span className="ml-1 tracking-normal text-red-300 transition-transform group-hover:translate-x-0.5">
+                  Visita Nuestro Sitio Web
+                  <span className="ml-1 tracking-normal text-white transition-transform group-hover:translate-x-0.5">
                     -&gt;
                   </span>
                 </span>
               </a>
             </div>
-            {/* New phone buttons */}
-            {/* <div className="mt-6 flex flex-col items-center space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-              <a
-                className="btn w-full rounded-lg bg-gradient-to-t from-red-600 to-red-500 px-6 py-3 text-white shadow-lg transition-transform transform hover:scale-105 hover:bg-gradient-to-b sm:w-auto"
-                href="https://wa.me/593962989426?text=Hola%20quisiera%20m%C3%A1s%20informaci%C3%B3n"
-              >
-                096 29 89 426
-              </a>
-              <a
-                className="btn w-full rounded-lg bg-gradient-to-t from-red-600 to-red-500 px-6 py-3 text-white shadow-lg transition-transform transform hover:scale-105 hover:bg-gradient-to-b sm:w-auto"
-                href="tel:+5930962840400"
-              >
-                096 28 40 400
-              </a>
-              <a
-                className="btn w-full rounded-lg bg-gradient-to-t from-red-600 to-red-500 px-6 py-3 text-white shadow-lg transition-transform transform hover:scale-105 hover:bg-gradient-to-b sm:w-auto"
-                href="tel:+59326021500"
-              >
-                (02) 602 15 00
-              </a>
-            </div> */}
           </div>
         </div>
       </div>

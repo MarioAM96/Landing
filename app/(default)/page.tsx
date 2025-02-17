@@ -14,8 +14,6 @@ export default function Home() {
     <>
       <Form />
       <Planes />
-      {/* <FeaturesPlanet /> */}
-      {/* <LargeTestimonial /> */}
       <Web />
     </>
   );

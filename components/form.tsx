@@ -6,6 +6,9 @@ import Swal from "sweetalert2";
 import InternetHogar from "@/public/images/fibramax_internet_hogar.png";
 import Latencia from "@/public/images/latencia.png";
 import Fibramax from "@/public/images/fibramax.png";
+import Header from "@/components/ui/header";
+import Link from "next/link";
+import { FaWhatsapp, FaAngleDoubleRight } from "react-icons/fa";
 
 export default function HeroHome() {
   const [formData, setFormData] = useState({
@@ -105,181 +108,128 @@ export default function HeroHome() {
   return (
     <section className="relative">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="pb-6 pt-32 md:pb-5 md:pt-20">
-          <div className="flex justify-center w-full mb-8 mt-6">
+        <div className="pb-6 pt-10 md:pb-5 md:pt-1">
+          {" "}
+          <div className="flex justify-center w-full mb-8 mt-2">
+            {" "}
             <Image
               src={Fibramax}
               alt="Internet Hogar"
-              width={600}
+              width={350}
               height={225}
               className="rounded-2xl"
             />
           </div>
-          <div className="flex flex-col md:flex-row md:space-x-8">
-            <div
-              className="flex-1 mt-3"
-              data-aos="zoom-y-out"
-              data-aos-delay={600}
-            >
-              <div className="relative">
-                <Image
-                  src={InternetHogar}
-                  alt="Internet Hogar"
-                  width={800}
-                  height={550}
-                  className="rounded-2xl"
-                />
-              </div>
+          {/* Contenedor principal con fondo negro */}
+          <div className="bg-[#1D1D1B] rounded-2xl p-0 md:p-0 flex flex-col md:flex-row">
+            {/* Imagen de Internet Hogar */}
+            <div className="w-full md:w-1/2 h-auto order-1 md:order-first">
+              <Image
+                src={InternetHogar}
+                alt="Internet Hogar"
+                layout="responsive"
+                width={800}
+                height={550}
+                className="w-full h-full object-cover md:rounded-l-2xl"
+              />
             </div>
-            <div className="flex-1">
-              <div className="pb-12 text-center md:pb-16">
-                <h1
-                  className="mb-2 border-y text-center text-[1.57rem] font-bold [border-image:linear-gradient(to_right,transparent,theme(colors.red.300/.8),transparent)1] md:text-[2.63rem]"
-                  data-aos="zoom-y-out"
-                  data-aos-delay={150}
-                  style={{ color: "#FE280A" }}
-                >
-                  ¡DÉJANOS TUS DATOS!
-                </h1>
-                <p className="text-center text-[0.785rem] md:text-[1.315rem] text-gray-600">
-                  Un asesor se comunicará contigo.
-                </p>
 
-                <div className="mx-auto max-w-3xl">
+            {/* Contenedor del formulario centrado */}
+            <div className="w-full md:w-1/2 flex items-center justify-center p-6 md:p-10 order-2 md:order-last">
+              <div className="bg-white rounded-2xl p-4 md:p-6 shadow-lg w-full max-w-md">
+                <div className="text-center">
+                  <h1
+                    className="mb-2 border-y text-center text-[1.3rem] font-bold [border-image:linear-gradient(to_right,transparent,theme(colors.red.300/.8),transparent)1] md:text-[2rem]"
+                    data-aos="zoom-y-out"
+                    data-aos-delay={150}
+                    style={{ color: "#1d1d1b" }}
+                  >
+                    ¡DÉJANOS TUS DATOS!
+                  </h1>
+                  <p className="text-center text-[0.7rem] md:text-[1rem] text-gray-600 mb-4">
+                    Un asesor se comunicará contigo.
+                  </p>
+
                   <form
-                    className="mt-8 grid grid-cols-1 gap-y-6"
+                    className="grid grid-cols-1 gap-y-2"
                     onSubmit={handleSubmit}
                   >
-                    <div data-aos="zoom-y-out" data-aos-delay={300}>
-                      <label className="block text-left text-sm font-semibold text-gray-700">
-                        Nombre y Apellido*
+                    <div>
+                      <label className="block text-left text-sm font-semibold text-gray-700 mb-1">
+                        Nombre*
                       </label>
-                      <input
-                        type="text"
-                        name="nombre"
-                        value={formData.nombre}
-                        onChange={handleChange}
-                        className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-900 placeholder-gray-400 shadow-sm focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500"
-                        placeholder="Ingrese su nombre completo"
-                        required
-                      />
-                    </div>
-                    <div data-aos="zoom-y-out" data-aos-delay={300}>
-                      <label className="block text-left text-sm font-semibold text-gray-700">
-                        Teléfono*
-                      </label>
-                      <input
-                        type="tel"
-                        name="telefono"
-                        value={formData.telefono}
-                        onChange={handleChange}
-                        className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-900 placeholder-gray-400 shadow-sm focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500"
-                        placeholder="Ingrese su teléfono"
-                        required
-                      />
-                    </div>
-                    <div
-                      className="col-span-1"
-                      data-aos="zoom-y-out"
-                      data-aos-delay={300}
-                    >
-                      <div className="flex items-center mt-2">
+                      <div data-aos="zoom-y-out" data-aos-delay={300}>
                         <input
-                          type="checkbox"
-                          id="policy"
-                          name="policy"
-                          checked={formData.policy}
+                          type="text"
+                          name="nombre"
+                          value={formData.nombre}
                           onChange={handleChange}
-                          className="h-4 w-4 rounded border-gray-300 text-red-600 focus:ring-red-500"
+                          className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-900 placeholder-gray-400 shadow-sm focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500"
+                          placeholder="Ingrese su nombre completo"
                           required
                         />
-                        <label
-                          htmlFor="policy"
-                          className="ml-2 text-sm text-gray-700"
-                        >
-                          Acepto las{" "}
-                          <button
-                            type="button"
-                            onClick={() => modalRef.current?.showModal()}
-                            className="text-red-600 hover:underline"
-                          >
-                            Políticas del Servicio
-                          </button>
-                        </label>
-
-                        {/* Modal */}
-                        <dialog
-                          ref={modalRef}
-                          className="p-4 rounded-lg shadow-lg w-[95vw] max-w-4xl h-[85vh] sm:w-[90vw] sm:h-[80vh] lg:w-[60vw] lg:h-[70vh] overflow-hidden backdrop:bg-black/50"
-                        >
-                          <div className="flex justify-between items-center mb-4">
-                            <h2 className="text-lg font-semibold">
-                              Políticas del Servicio
-                            </h2>
-                            <button
-                              onClick={() => modalRef.current?.close()}
-                              className="text-red-600 text-2xl font-bold"
-                            >
-                              ×
-                            </button>
-                          </div>
-                          <iframe
-                            src="https://fibramax.ec/wp-content/uploads/2024/07/Aviso-Privacidad-Fibramax.pdf"
-                            className="w-full h-full border rounded-lg"
-                          />
-                        </dialog>
                       </div>
                     </div>
+
+                    <div>
+                      <label className="block text-left text-sm font-semibold text-gray-700 mb-1">
+                        Teléfono*
+                      </label>
+                      <div data-aos="zoom-y-out" data-aos-delay={300}>
+                        <input
+                          type="tel"
+                          name="telefono"
+                          value={formData.telefono}
+                          onChange={handleChange}
+                          className="mt-1 block w-full rounded-md border border-gray-300 bg-white px-4 py-3 text-gray-900 placeholder-gray-400 shadow-sm focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500"
+                          placeholder="Ingrese su teléfono"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    {/* Política de privacidad */}
                     <div
-                      className="col-span-1"
+                      className="flex items-center"
                       data-aos="zoom-y-out"
                       data-aos-delay={300}
                     >
-                      <button
-                        type="submit"
-                        className="btn group w-full rounded-md bg-gradient-to-r from-red-600 to-red-500 px-6 py-3 text-base font-medium text-white shadow-lg transition-transform transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
-                        disabled={isSubmitting}
-                      >
-                        {isSubmitting ? (
-                          <span className="relative inline-flex items-center justify-center w-full">
-                            <svg
-                              className="animate-spin h-5 w-5 mr-3 text-white"
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                            >
-                              <circle
-                                className="opacity-25"
-                                cx="12"
-                                cy="12"
-                                r="10"
-                                stroke="currentColor"
-                                strokeWidth="4"
-                              ></circle>
-                              <path
-                                className="opacity-75"
-                                fill="currentColor"
-                                d="M4 12a8 8 0 018-8v8H4z"
-                              ></path>
-                            </svg>
-                            Enviando...
-                          </span>
-                        ) : (
-                          <span className="relative inline-flex items-center justify-center w-full">
-                            Enviar{" "}
-                            <span className="ml-2 text-xl transition-transform group-hover:translate-x-1">
-                              &#8594;
-                            </span>
-                          </span>
-                        )}
-                      </button>
+                      <input
+                        type="checkbox"
+                        id="policy"
+                        name="policy"
+                        checked={formData.policy}
+                        onChange={handleChange}
+                        className="h-3 w-3 rounded border-gray-300 text-red-600 focus:ring-red-500 mr-2"
+                        required
+                      />
+                      <label htmlFor="policy" className="text-xs text-gray-700">
+                        Acepto las{" "}
+                        <button
+                          type="button"
+                          onClick={() => modalRef.current?.showModal()}
+                          className="text-red-600 hover:underline"
+                        >
+                          Políticas del Servicio
+                        </button>
+                      </label>
                     </div>
+
+                    {/* Botón de envío */}
+                    <button
+                      type="submit"
+                      className="w-full rounded-md bg-gradient-to-r from-red-600 to-red-500 py-2 text-sm font-medium text-white shadow-lg hover:brightness-110 transition-all"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? "Enviando..." : "Enviar"}
+                    </button>
                   </form>
                 </div>
               </div>
             </div>
           </div>
-          <div className="flex justify-center w-full">
+          {/* Imagen de Latencia */}
+          <div className="flex justify-center w-full mt-8">
             <Image
               src={Latencia}
               alt="Internet Hogar"
@@ -290,6 +240,48 @@ export default function HeroHome() {
           </div>
         </div>
       </div>
+      {/* Nuevo elemento similar al header */}
+      <div className="w-full mt-8">
+        <div className="relative flex h-20 items-center justify-center bg-[#1d1d1b] text-white px-4 sm:px-6">
+          <div className="flex items-center justify-center w-full">
+            <ul className="flex items-center gap-5">
+              <li className="font-bold text-white text-base sm:text-lg md:text-3xl whitespace-nowrap flex items-center gap-2">
+                Más Información{" "}
+                <FaAngleDoubleRight className="text-sm sm:text-lg md:text-2xl" />
+              </li>
+              <li>
+                <Link
+                  href="https://wa.me/593962989426?text=Hola%20quisiera%20m%C3%A1s%20informaci%C3%B3n"
+                  className="btn-sm bg-[#FE280A] text-white shadow hover:bg-[#FE280A]/90 flex items-center gap-3 whitespace-nowrap px-4 py-2 sm:px-6 sm:py-3 rounded-xl text-base sm:text-lg"
+                >
+                  <FaWhatsapp className="text-lg sm:text-xl md:text-2xl" />
+                  WhatsApp Ventas
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* Modal de Políticas */}
+      <dialog
+        ref={modalRef}
+        className="p-4 rounded-lg shadow-lg w-[95vw] max-w-4xl h-[85vh] sm:w-[90vw] sm:h-[80vh] lg:w-[60vw] lg:h-[70vh] overflow-hidden backdrop:bg-black/50"
+      >
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-lg font-semibold">Políticas del Servicio</h2>
+          <button
+            onClick={() => modalRef.current?.close()}
+            className="text-red-600 text-2xl font-bold"
+          >
+            ×
+          </button>
+        </div>
+        <iframe
+          src="https://fibramax.ec/wp-content/uploads/2024/07/Aviso-Privacidad-Fibramax.pdf"
+          className="w-full h-full border rounded-lg"
+        />
+      </dialog>
     </section>
   );
 }
